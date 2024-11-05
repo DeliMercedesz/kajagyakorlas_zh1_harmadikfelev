@@ -110,10 +110,10 @@ namespace kajagyakorlas
 
         private void remove_Click(object sender, EventArgs e)
         {
-            var törlendő = (Hozzávaló)hozzávalóBindingSource.Current;
+            var törlendő = dataGridView1.SelectedRows[0].DataBoundItem as Hozzávaló;
 
             var törlendők = (from x in _context.Receptek
-                             where x.ReceptId == törlendő.ReceptID
+                             where x.ReceptId == törlendő!.ReceptID
                              select x).FirstOrDefault();
 
             _context.Receptek.Remove(törlendők);
