@@ -113,12 +113,32 @@ namespace kajagyakorlas
             var törlendő = (Hozzávaló)hozzávalóBindingSource.Current;
 
             var törlendők = (from x in _context.Receptek
-                            where x.ReceptId== törlendő.ReceptID
-                            select x).FirstOrDefault();
+                             where x.ReceptId == törlendő.ReceptID
+                             select x).FirstOrDefault();
 
             _context.Receptek.Remove(törlendők);
             _context.SaveChanges();
             loadReceptek();
+        }
+
+        private void button1_Click(object sender, EventArgs e)  //Nyersanyag hozzáadása
+        {
+            ujNyersanyag ujnyers = new ujNyersanyag();
+
+            if (ujnyers.ShowDialog() == DialogResult.OK)
+            {
+                Nyersanyagok ujnyersanyag = new Nyersanyagok();
+                ujnyersanyag.NyersanyagNev = ujnyers.Nevtxt.Text;
+                ujnyersanyag.Egysegar = int.Parse(ujnyers.Egysegartxt.Text);
+
+                _context.Nyersanyagok.Add(ujnyersanyag);
+                _context.SaveChanges();
+                NyersenyagLoad();
+            }
+            else
+            {
+                MessageBox.Show("Nem OK-al zárult");
+            }
         }
     }
 
