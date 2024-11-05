@@ -1,4 +1,5 @@
 ﻿using kajagyakorlas.Models;
+using System.Xml.Linq;
 
 namespace kajagyakorlas
 {
@@ -141,6 +142,34 @@ namespace kajagyakorlas
             {
                 MessageBox.Show("Nem OK-al zárult");
             }
+        }
+
+        private void xml_Click(object sender, EventArgs e) //xml fájl írás
+        {
+            var nyersanagokxml =(from ny in _context.Nyersanyagok
+                                 select ny).ToList();
+            XDocument xdoc = new XDocument();
+            XDeclaration xdecl = new XDeclaration("1.0", "utf-8", "yes");
+            xdoc.Declaration = xdecl;
+
+            // Győkérelem létrehozása
+            XElement root = new XElement("Nyersanyagok");
+            xdoc.Add(root);
+
+            foreach (var nyers in nyersanagokxml)
+            {
+                if(nyers.NyersanyagNev == null)
+                {
+                    nyers.NyersanyagNev = "";
+                }
+                XElement node = new XElement("Nyersanyagok",
+                new XAttribute("NyersanyagID", nyers.NyersanyagId),
+                new XAttribute("Nev", nyers.NyersanyagNev));
+
+                root.Add(node);
+            }
+
+            MessageBox.Show(xdoc.ToString());
         }
     }
 

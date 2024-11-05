@@ -48,6 +48,7 @@
             mennyisegtxt = new TextBox();
             remove = new Button();
             button1 = new Button();
+            xml = new Button();
             ((System.ComponentModel.ISupportInitialize)fogasokBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nyersanyagokBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
@@ -193,7 +194,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(514, 28);
+            button1.Location = new Point(719, 28);
             button1.Name = "button1";
             button1.Size = new Size(69, 26);
             button1.TabIndex = 9;
@@ -201,11 +202,22 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
+            // xml
+            // 
+            xml.Location = new Point(12, 28);
+            xml.Name = "xml";
+            xml.Size = new Size(64, 29);
+            xml.TabIndex = 10;
+            xml.Text = "xml";
+            xml.UseVisualStyleBackColor = true;
+            xml.Click += xml_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(xml);
             Controls.Add(button1);
             Controls.Add(remove);
             Controls.Add(mennyisegtxt);
@@ -247,5 +259,6 @@
         private TextBox mennyisegtxt;
         private Button remove;
         private Button button1;
+        private Button xml;
     }
 }
