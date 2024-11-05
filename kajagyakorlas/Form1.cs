@@ -119,9 +119,14 @@ namespace kajagyakorlas
                              where x.ReceptId == törlendő!.ReceptID
                              select x).FirstOrDefault();
 
-            _context.Receptek.Remove(törlendők);
-            _context.SaveChanges();
-            loadReceptek();
+            if (MessageBox.Show("A", "B", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                _context.Receptek.Remove(törlendők);
+                _context.SaveChanges();
+                loadReceptek();
+            }
+
+            
         }
 
         private void button1_Click(object sender, EventArgs e)  //Nyersanyag hozzáadása
