@@ -16,7 +16,7 @@ namespace kajagyakorlas
         }
 
 
-        private void FogasokLoad()
+        private void FogasokLoad()  //fogások betöltése a listboxba
         {
             var fogasok_lista = (from r in _context.Fogasok
                                  where r.FogasNev.Contains(fogastxt.Text)
@@ -28,7 +28,7 @@ namespace kajagyakorlas
 
         }
 
-        private void NyersenyagLoad()
+        private void NyersenyagLoad() //nyersanyag betöltése a listboxba
         {
             var Nyersanyagok_lista = (from ny in _context.Nyersanyagok
                                       where ny.NyersanyagNev.Contains(Nyersanyagtxt.Text)
@@ -39,7 +39,7 @@ namespace kajagyakorlas
         }
 
 
-
+        //EZ A KETTŐ A SZŰRÉS
         private void fogastxt_TextChanged(object sender, EventArgs e)
         {
             FogasokLoad();
@@ -49,6 +49,8 @@ namespace kajagyakorlas
         {
             NyersenyagLoad();
         }
+
+
 
         private void Nyersanyaglb_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -70,7 +72,7 @@ namespace kajagyakorlas
 
         }
 
-        private void loadReceptek()
+        private void loadReceptek() //itt töltjük be a datagridview-t --> külön osztályt használunk mert több tábla kell
         {
             var kivalasztottfogas = (Fogasok)fogaslb.SelectedItem;
             var recept_lista = (from x in _context.Receptek
@@ -82,7 +84,7 @@ namespace kajagyakorlas
                                     NyersanyagNev = x.Nyersanyag.NyersanyagNev,
                                     Mennyiseg_4fo = x.Mennyiseg4fo,
                                     EgysegNev = x.Nyersanyag.MennyisegiEgyseg.EgysegNev,
-                                    Ár = x.Mennyiseg4fo * (double?)x.Nyersanyag.Egysegar
+                                    Ár = x.Mennyiseg4fo * (double?)x.Nyersanyag.Egysegar //át kell konvertálni double-ra mert a másik az
 
                                 }).ToList();
 
